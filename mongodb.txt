@@ -1,0 +1,59 @@
+#----------------------------------------- Mongo Db basic commands -----------------------#
+> show dbs
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+> use Testi
+switched to db Testi
+> db.emp.insert({empname:"HariKrishnan",empage:25})
+WriteResult({ "nInserted" : 1 })
+> show dbs
+Testi      0.000GB
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+> show collections
+emp
+> db.empadd.insert({Harikrishnan:"chennai",Hari:"Delhi",Krishnan:"Banglore"})
+WriteResult({ "nInserted" : 1 })
+> show collections
+emp
+empadd
+> db.emp.find()
+{ "_id" : ObjectId("63640b026046f19e14975a57"), "empname" : "HariKrishnan", "emp
+age" : 25 }
+> db.emp.find().pretty()
+{
+        "_id" : ObjectId("63640b026046f19e14975a57"),
+        "empname" : "HariKrishnan",
+        "empage" : 25
+}
+> show dbs
+Testi      0.000GB
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+> db.createCollection("department")
+{ "ok" : 1 }
+> show collections
+department
+emp
+empadd
+> db.department.insert({Harikrishnan:"Validation",Hari:"Validation aws",Krishnan
+:"Validation_gcp"})
+WriteResult({ "nInserted" : 1 })
+> show collections
+department
+emp
+empadd
+> db.department.find().pretty()
+{
+        "_id" : ObjectId("63640c496046f19e14975a59"),
+        "Harikrishnan" : "Validation",
+        "Hari" : "Validation aws",
+        "Krishnan" : "Validation_gcp"
+}
+>
