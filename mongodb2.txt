@@ -1,0 +1,119 @@
+> show dbs
+Testi      0.000GB
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+> use harikrish
+switched to db harikrish
+> show collections
+client
+employee
+> db.client.find().pretty()
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd487"),
+        "clientname" : "lokesh",
+        "clientloc" : "chennai",
+        "clientdep" : "direction"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd488"),
+        "clientname" : "maariselva",
+        "clientloc" : "trichy",
+        "clientdep" : "editing"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd489"),
+        "clientname" : "umapathy",
+        "clientloc" : "kancheepuram",
+        "clientdep" : "audiomix"
+}
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba46"),
+        "clientname" : "ravishankar",
+        "clienntloc" : "tiruvandhapuram",
+        "clientdep" : "documentcoll"
+}
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba47"),
+        "clientname" : "ganesan",
+        "clientloc" : "kochin",
+        "clientdep" : "soundengg"
+}
+> db.client.find({$and : [{"clientname":"ganesan"},{"clientloc":"kochin"}]})
+{ "_id" : ObjectId("6366cb93fea21815ac8fba47"), "clientname" : "ganesan", "clien
+tloc" : "kochin", "clientdep" : "soundengg" }
+> db.client.find({$and : [{"clientname":"ganesan"},{"clientloc":"kochin"}]}).pre
+tty()
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba47"),
+        "clientname" : "ganesan",
+        "clientloc" : "kochin",
+        "clientdep" : "soundengg"
+}
+> db.client.find({$or:[{clientloc:"chennai"},{clientdep:"audiomix"}]}).pretty()
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd487"),
+        "clientname" : "lokesh",
+        "clientloc" : "chennai",
+        "clientdep" : "direction"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd489"),
+        "clientname" : "umapathy",
+        "clientloc" : "kancheepuram",
+        "clientdep" : "audiomix"
+}
+> db.client.find({$or:[{clientloc:"dindugal"},{clientdep:"audiomix"}]}).pretty()
+
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd489"),
+        "clientname" : "umapathy",
+        "clientloc" : "kancheepuram",
+        "clientdep" : "audiomix"
+}
+> db.client.find({$nor:[{clientname:"ganesan"},{clientloc:"chennai"}]}).pretty()
+
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd488"),
+        "clientname" : "maariselva",
+        "clientloc" : "trichy",
+        "clientdep" : "editing"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd489"),
+        "clientname" : "umapathy",
+        "clientloc" : "kancheepuram",
+        "clientdep" : "audiomix"
+}
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba46"),
+        "clientname" : "ravishankar",
+        "clienntloc" : "tiruvandhapuram",
+        "clientdep" : "documentcoll"
+}
+> db.client.find({clientloc:{$not:{$eq:"chennai"}}}).pretty()
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd488"),
+        "clientname" : "maariselva",
+        "clientloc" : "trichy",
+        "clientdep" : "editing"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd489"),
+        "clientname" : "umapathy",
+        "clientloc" : "kancheepuram",
+        "clientdep" : "audiomix"
+}
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba46"),
+        "clientname" : "ravishankar",
+        "clienntloc" : "tiruvandhapuram",
+        "clientdep" : "documentcoll"
+}
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba47"),
+        "clientname" : "ganesan",
+        "clientloc" : "kochin",
+        "clientdep" : "soundengg"
+}
