@@ -1,0 +1,209 @@
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>mongo
+MongoDB shell version v4.2.23
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName
+=mongodb
+Implicit session: session { "id" : UUID("abb2f941-c8f5-494c-ab45-3310f1e1b2a6")
+}
+MongoDB server version: 4.2.23
+Server has startup warnings:
+2022-11-01T17:49:11.333+0530 I  CONTROL  [initandlisten]
+2022-11-01T17:49:11.333+0530 I  CONTROL  [initandlisten] ** WARNING: Access cont
+rol is not enabled for the database.
+2022-11-01T17:49:11.333+0530 I  CONTROL  [initandlisten] **          Read and wr
+ite access to data and configuration is unrestricted.
+2022-11-01T17:49:11.334+0530 I  CONTROL  [initandlisten]
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive an
+d display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc)
+.
+
+The monitoring data will be available on a MongoDB website with a unique URL acc
+essible to you
+and anyone you share the URL with. MongoDB may use this information to make prod
+uct
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeM
+onitoring()
+---
+
+> show dbs
+Testi      0.000GB
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+> use harikrish
+switched to db harikrish
+> show collection
+2022-11-06T23:42:23.277+0530 E  QUERY    [js] uncaught exception: Error: don't k
+now how to show [collection] :
+shellHelper.show@src/mongo/shell/utils.js:1139:11
+shellHelper@src/mongo/shell/utils.js:790:15
+@(shellhelp2):1:1
+> show collections
+client
+employee
+> db.client.find().pretty()
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd487"),
+        "clientname" : "lokesh",
+        "clientloc" : "chennai",
+        "clientdep" : "direction"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd488"),
+        "clientname" : "maariselva",
+        "clientloc" : "trichy",
+        "clientdep" : "editing"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd489"),
+        "clientname" : "umapathy",
+        "clientloc" : "kancheepuram",
+        "clientdep" : "audiomix"
+}
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba46"),
+        "clientname" : "ravishankar",
+        "clienntloc" : "tiruvandhapuram",
+        "clientdep" : "documentcoll"
+}
+{
+        "_id" : ObjectId("6366cb93fea21815ac8fba47"),
+        "clientname" : "ganesan",
+        "clientloc" : "kochin",
+        "clientdep" : "soundengg"
+}
+> db.client.find().limit(3).pretty()
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd487"),
+        "clientname" : "lokesh",
+        "clientloc" : "chennai",
+        "clientdep" : "direction"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd488"),
+        "clientname" : "maariselva",
+        "clientloc" : "trichy",
+        "clientdep" : "editing"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd489"),
+        "clientname" : "umapathy",
+        "clientloc" : "kancheepuram",
+        "clientdep" : "audiomix"
+}
+> db.client.find().limit(2).pretty()
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd487"),
+        "clientname" : "lokesh",
+        "clientloc" : "chennai",
+        "clientdep" : "direction"
+}
+{
+        "_id" : ObjectId("6363701eb62cd967eaefd488"),
+        "clientname" : "maariselva",
+        "clientloc" : "trichy",
+        "clientdep" : "editing"
+}
+> show dbs
+Testi      0.000GB
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+> use Testi
+switched to db Testi
+> show collections
+department
+emp
+empadd
+> db.department.find().pretty()
+{
+        "_id" : ObjectId("63640c496046f19e14975a59"),
+        "Harikrishnan" : "Validation",
+        "Hari" : "Validation aws",
+        "Krishnan" : "Validation_gcp"
+}
+> db.emp.find().pretty()
+{
+        "_id" : ObjectId("63640b026046f19e14975a57"),
+        "empname" : "HariKrishnan",
+        "empage" : 25
+}
+> db.empadd.find().pretty()
+{
+        "_id" : ObjectId("63640b636046f19e14975a58"),
+        "Harikrishnan" : "chennai",
+        "Hari" : "Delhi",
+        "Krishnan" : "Banglore"
+}
+> db.location.insert({Hari:"cni"},{ram:"kanchi"})
+WriteResult({ "nInserted" : 1 })
+> db.collections
+Testi.collections
+> show collections
+department
+emp
+empadd
+location
+> db.location.find().pretty()
+{ "_id" : ObjectId("6367fb84b4758ebd77cec986"), "Hari" : "cni" }
+> db.location.insertMany({[
+... {saravanan:"madur"},
+... {selva:"trip"},
+... {sanjay:"vandhav")
+... ]})
+2022-11-06T23:56:06.137+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing ] in computed property name :
+@(shell):2:19
+> db.location.insertMany({[ {saravanan:"madur"}, {selva:"trip"}, {sanjay:"vandha
+v") ]})
+2022-11-06T23:56:49.736+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing ] in computed property name :
+@(shell):1:45
+> db.location.insertMany({[ {saravanan:"madur"}, {selva:"trip"}, {sanjay:"vandha
+v") ])
+2022-11-06T23:58:38.910+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing ] in computed property name :
+@(shell):1:45
+> db.location.insertMany([ {saravanan:"madur"}, {selva:"trip"}, {sanjay:"vandhav
+") ])
+2022-11-07T00:00:00.262+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing } after property list :
+@(shell):1:79
+> db.location.insertMany([ {saravanan:"madur"}, {selva:"trip"}, {sanjay:"vandhav
+")])
+2022-11-07T00:00:51.368+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing } after property list :
+@(shell):1:79
+> db.loctaion.insertMany([{Sarvana:"kov"},{Raja:"Salem"},{lokesh:"rajasthan"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("6367fdbbb4758ebd77cec987"),
+                ObjectId("6367fdbbb4758ebd77cec988"),
+                ObjectId("6367fdbbb4758ebd77cec989")
+        ]
+}
+> db.location.find().pretty()
+{ "_id" : ObjectId("6367fb84b4758ebd77cec986"), "Hari" : "cni" }
+> db.location.find()
+{ "_id" : ObjectId("6367fb84b4758ebd77cec986"), "Hari" : "cni" }
+> db.location.find()
+{ "_id" : ObjectId("6367fb84b4758ebd77cec986"), "Hari" : "cni" }
+> use harirish
+switched to db harirish
+> show dbs
+Testi      0.000GB
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+>
