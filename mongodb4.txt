@@ -1,0 +1,300 @@
+        "empid" : 2,
+        "empname" : "manager"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba48"),
+        "empid" : 3,
+        "empname" : "qamanager"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba49"),
+        "empid" : 4,
+        "empname" : "admin qa"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4a"),
+        "empid" : 5,
+        "empname" : "qa assurance"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4b"),
+        "empid" : 6,
+        "empname" : "production"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4c"),
+        "empid" : 7,
+        "empname" : "admin"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4d"),
+        "empid" : 8,
+        "empname" : "manager"
+}
+> db.newemp.update({empname:"admin"},{$set:{empname:"administartor"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba46"),
+        "empid" : 1,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba47"),
+        "empid" : 2,
+        "empname" : "manager"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba48"),
+        "empid" : 3,
+        "empname" : "qamanager"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba49"),
+        "empid" : 4,
+        "empname" : "admin qa"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4a"),
+        "empid" : 5,
+        "empname" : "qa assurance"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4b"),
+        "empid" : 6,
+        "empname" : "production"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4c"),
+        "empid" : 7,
+        "empname" : "admin"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4d"),
+        "empid" : 8,
+        "empname" : "manager"
+}
+> db.newemp.update({empname:"manager"},{$set:{empname:"incharge"} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba46"),
+        "empid" : 1,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba47"),
+        "empid" : 2,
+        "empname" : "incharge"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba48"),
+        "empid" : 3,
+        "empname" : "qamanager"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba49"),
+        "empid" : 4,
+        "empname" : "admin qa"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4a"),
+        "empid" : 5,
+        "empname" : "qa assurance"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4b"),
+        "empid" : 6,
+        "empname" : "production"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4c"),
+        "empid" : 7,
+        "empname" : "admin"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4d"),
+        "empid" : 8,
+        "empname" : "manager"
+}
+> var myemp = [{empid:9,empname:"admin qa"},{empid:10,empname:"admin qa"}]
+> db.newemp.insert(myemp)
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba46"),
+        "empid" : 1,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba47"),
+        "empid" : 2,
+        "empname" : "incharge"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba48"),
+        "empid" : 3,
+        "empname" : "qamanager"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba49"),
+        "empid" : 4,
+        "empname" : "admin qa"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4a"),
+        "empid" : 5,
+        "empname" : "qa assurance"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4b"),
+        "empid" : 6,
+        "empname" : "production"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4c"),
+        "empid" : 7,
+        "empname" : "admin"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4d"),
+        "empid" : 8,
+        "empname" : "manager"
+}
+{
+        "_id" : ObjectId("636c02480864c6d4d7a7ba4e"),
+        "empid" : 9,
+        "empname" : "admin qa"
+}
+{
+        "_id" : ObjectId("636c02480864c6d4d7a7ba4f"),
+        "empid" : 10,
+        "empname" : "admin qa"
+}
+> db.newemp.update({empname:"admin qa},{$set:{empname:"administartor}},{multi:tr
+ue})
+2022-11-10T01:13:38.844+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing } after property list :
+@(shell):1:53
+> db.newemp.update({empname:"admin qa"},{$set:{empname:"administartor"}},{multi:
+true})
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba46"),
+        "empid" : 1,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba47"),
+        "empid" : 2,
+        "empname" : "incharge"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba48"),
+        "empid" : 3,
+        "empname" : "qamanager"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba49"),
+        "empid" : 4,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4a"),
+        "empid" : 5,
+        "empname" : "qa assurance"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4b"),
+        "empid" : 6,
+        "empname" : "production"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4c"),
+        "empid" : 7,
+        "empname" : "admin"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4d"),
+        "empid" : 8,
+        "empname" : "manager"
+}
+{
+        "_id" : ObjectId("636c02480864c6d4d7a7ba4e"),
+        "empid" : 9,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636c02480864c6d4d7a7ba4f"),
+        "empid" : 10,
+        "empname" : "administartor"
+}
+> show collections
+department
+emp
+empadd
+location
+loctaion
+newemp
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba46"),
+        "empid" : 1,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba47"),
+        "empid" : 2,
+        "empname" : "incharge"
+}
+{
+        "_id" : ObjectId("636bfe630864c6d4d7a7ba48"),
+        "empid" : 3,
+        "empname" : "qamanager"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba49"),
+        "empid" : 4,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4a"),
+        "empid" : 5,
+        "empname" : "qa assurance"
+}
+{
+        "_id" : ObjectId("636bff4b0864c6d4d7a7ba4b"),
+        "empid" : 6,
+        "empname" : "production"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4c"),
+        "empid" : 7,
+        "empname" : "admin"
+}
+{
+        "_id" : ObjectId("636bffa80864c6d4d7a7ba4d"),
+        "empid" : 8,
+        "empname" : "manager"
+}
+{
+        "_id" : ObjectId("636c02480864c6d4d7a7ba4e"),
+        "empid" : 9,
+        "empname" : "administartor"
+}
+{
+        "_id" : ObjectId("636c02480864c6d4d7a7ba4f"),
+        "empid" : 10,
+        "empname" : "administartor"
+}
+>
