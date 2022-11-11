@@ -1,0 +1,604 @@
+harikrish  0.000GB
+local      0.000GB
+> db.createCollection('democollection')
+{ "ok" : 1 }
+> show dbs
+Testi      0.000GB
+admin      0.000GB
+config     0.000GB
+harikrish  0.000GB
+local      0.000GB
+sldb       0.000GB
+> db.slstudent.insert({name:"admin"})
+WriteResult({ "nInserted" : 1 })
+> show collections
+democollection
+slstudent
+> db.slstudent.find()
+{ "_id" : ObjectId("636dd2df3b49cef608e92d1b"), "name" : "admin" }
+> db.democollection.find()
+> db.student.insert(
+... {regno:'1234',
+... name:'student1',
+... course:{coursename:'Mba',duration:'3years'},
+... address:{city:'chennai','state:'tamilnadu',country:'india'}
+2022-11-11T10:24:12.566+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing : after property id :
+@(shell):5:32
+> db.student.insert( {regno:'1234', name:'student1', course:{coursename:'Mba',du
+ration:'3years'}, address:{city:'chennai','state:'tamilnadu',country:'india'}})
+2022-11-11T10:24:26.402+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing : after property id :
+@(shell):1:128
+> db.student.insert( {regno:'1234', name:'student1', course:{coursename:'Mba',du
+ration:'3years'}, address:{city:'chennai',state:'tamilnadu',country:'india'}})
+WriteResult({ "nInserted" : 1 })
+> db.student.find()
+{ "_id" : ObjectId("636dd5af3b49cef608e92d1c"), "regno" : "1234", "name" : "stud
+ent1", "course" : { "coursename" : "Mba", "duration" : "3years" }, "address" : {
+ "city" : "chennai", "state" : "tamilnadu", "country" : "india" } }
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("636dd5af3b49cef608e92d1c"),
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+> db.student.insert( {_id:101,regno:'1234', name:'student1', course:{coursename:
+'Mba',duration:'3years'}, address:{city:'chennai',state:'tamilnadu',country:'ind
+ia'}})
+WriteResult({ "nInserted" : 1 })
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("636dd5af3b49cef608e92d1c"),
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+{
+        "_id" : 101,
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+> var myemp = [
+... {empid:1,empname:'rakesh'},
+... {empid:2,empname:'suresh'},
+... {empid:3,empname:'saravanan'}
+... ]
+> db.newemp.insert(myemp)
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 3,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1d"),
+        "empid" : 1,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1f"),
+        "empid" : 3,
+        "empname" : "saravanan"
+}
+> var myemp = [ {empid:4,empname:'rakesh'}, {empid:5,empname:'suresh'}, {empid:6
+,empname:'saravanan'} ]
+> db.newemp.insert(myemp)
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 3,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1d"),
+        "empid" : 1,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1f"),
+        "empid" : 3,
+        "empname" : "saravanan"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d22"),
+        "empid" : 6,
+        "empname" : "saravanan"
+}
+> db.newemp.update({name:'rakesh'},{$set:{name:'rohit'}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1d"),
+        "empid" : 1,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1f"),
+        "empid" : 3,
+        "empname" : "saravanan"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d22"),
+        "empid" : 6,
+        "empname" : "saravanan"
+}
+> db.newemp.update({empname:'rakesh'},{$set:{empname:'rohit'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1d"),
+        "empid" : 1,
+        "empname" : "rohit"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1f"),
+        "empid" : 3,
+        "empname" : "saravanan"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d22"),
+        "empid" : 6,
+        "empname" : "saravanan"
+}
+> db.newemp.update({empname:'suresh'},{$set:{empname:'Harikrishnan'}},{muti:true
+})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1d"),
+        "empid" : 1,
+        "empname" : "rohit"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Harikrishnan"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1f"),
+        "empid" : 3,
+        "empname" : "saravanan"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d22"),
+        "empid" : 6,
+        "empname" : "saravanan"
+}
+> db.newemp.update({name:'saravanan'},{$set:{name:'lokesh'}},{multi:true})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.newemp.update({empname:'saravanan'},{$set:{empname:'lokesh'}},{multi:true})
+
+WriteResult({ "nMatched" : 2, "nUpserted" : 0, "nModified" : 2 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1d"),
+        "empid" : 1,
+        "empname" : "rohit"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Harikrishnan"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1f"),
+        "empid" : 3,
+        "empname" : "lokesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d22"),
+        "empid" : 6,
+        "empname" : "lokesh"
+}
+>
+
+##########################************************************************************************************########################################
+
+
+        "empname" : "lokesh"
+}
+> db.newemp.remove({empname:'lokesh'})
+WriteResult({ "nRemoved" : 2 })
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+> db.newemp.find({empname:"rakesh"})
+{ "_id" : ObjectId("636dd91f3b49cef608e92d20"), "empid" : 4, "empname" : "rakesh
+" }
+> db.newemp.find({empname:"rakesh"}).pretty()
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+> db.newemp.find().limit(2).pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+> db.newemp.find().limit(1).pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+> db.newemp.find().sort(empname:1).pretty()
+2022-11-11T12:00:20.156+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing ) after argument list :
+@(shell):1:29
+> db.newemp.find().sort({empname:}1).pretty()
+2022-11-11T12:00:50.645+0530 E  QUERY    [js] uncaught exception: SyntaxError: e
+xpected expression, got '}' :
+@(shell):1:31
+> db.newemp.find().sort({empname:1}).pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+> db.newemp.find().sort({empname:-1}).pretty()
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+> show collections
+democollection
+newemp
+slstudent
+student
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("636dd5af3b49cef608e92d1c"),
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+{
+        "_id" : 101,
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+> db.student.find({"address.state":"tamilnadu"}).pretty()
+{
+        "_id" : ObjectId("636dd5af3b49cef608e92d1c"),
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+{
+        "_id" : 101,
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+> db.student.insert( {regno:'1235', name:'student1', course:{coursename:'b.com',
+duration:'3years'}, address:{city:'banglore',state:'ka',country:'india'}})
+WriteResult({ "nInserted" : 1 })
+> db.student.find({"address.state":"tamilnadu"}).pretty()
+{
+        "_id" : ObjectId("636dd5af3b49cef608e92d1c"),
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+{
+        "_id" : 101,
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("636dd5af3b49cef608e92d1c"),
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+{
+        "_id" : 101,
+        "regno" : "1234",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "Mba",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "chennai",
+                "state" : "tamilnadu",
+                "country" : "india"
+        }
+}
+{
+        "_id" : ObjectId("636ded7b3b49cef608e92d23"),
+        "regno" : "1235",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "b.com",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "banglore",
+                "state" : "ka",
+                "country" : "india"
+        }
+}
+> db.student.find({"address.state":"ka"}).pretty()
+{
+        "_id" : ObjectId("636ded7b3b49cef608e92d23"),
+        "regno" : "1235",
+        "name" : "student1",
+        "course" : {
+                "coursename" : "b.com",
+                "duration" : "3years"
+        },
+        "address" : {
+                "city" : "banglore",
+                "state" : "ka",
+                "country" : "india"
+        }
+}
+> db.newemp.find.pretty()
+2022-11-11T12:09:35.950+0530 E  QUERY    [js] uncaught exception: TypeError: db.
+newemp.find.pretty is not a function :
+@(shell):1:1
+> db.newemp.find().pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+> db.newemp.find({empid:{$gt:4}}).pretty()
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+> db.newemp.find({empid:{$lt:4}}).pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+> db.newemp.find({empid:{$in:[2,5]}}).pretty()
+{
+        "_id" : ObjectId("636dd86c3b49cef608e92d1e"),
+        "empid" : 2,
+        "empname" : "Rajesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+> db.newemp.find({empid:{$in:[4,5]}}).pretty()
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d20"),
+        "empid" : 4,
+        "empname" : "rakesh"
+}
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+> db.newemp.find({empid:{$in:[5,5]}}).pretty()
+{
+        "_id" : ObjectId("636dd91f3b49cef608e92d21"),
+        "empid" : 5,
+        "empname" : "suresh"
+}
+>
