@@ -1,0 +1,292 @@
+
+        "isbn" : "0-221-01"
+}
+{
+        "_id" : ObjectId("6371c28b7b81beee04108046"),
+        "title" : "nosql in 8 days",
+        "isbn" : "0-221-02"
+}
+{
+        "_id" : ObjectId("6371c28b7b81beee04108047"),
+        "title" : "mosql database",
+        "isbn" : "0-221-03"
+}
+{ "_id" : "1011", "title" : "sql distilled", "isbn" : "0-221-01" }
+{ "_id" : 1012, "title" : "sql in 8 days", "isbn" : "0-221-02" }
+{ "_id" : 1013, "title" : "sql database", "isbn" : "0-221-03" }
+> db.books.insertMany([ {_id:'1011',title:'sql ',isbn:'0-221-01'}, {_id:1012,tit
+le:'sql',isbn:'0-221-02'}, {_id:1014,title:'sql',isbn:'0-221-03'} ])
+2022-11-14T10:00:07.617+0530 E  QUERY    [js] uncaught exception: BulkWriteError
+({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: \"1011\" }",
+                        "op" : {
+                                "_id" : "1011",
+                                "title" : "sql ",
+                                "isbn" : "0-221-01"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 0,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+}) :
+BulkWriteError({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: \"1011\" }",
+                        "op" : {
+                                "_id" : "1011",
+                                "title" : "sql ",
+                                "isbn" : "0-221-01"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 0,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+BulkWriteError@src/mongo/shell/bulk_api.js:367:48
+BulkWriteResult/this.toError@src/mongo/shell/bulk_api.js:332:24
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1186:23
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:326:5
+@(shell):1:1
+> db.books.insertMany([
+... {_id:1014,title:'sql performance tuning',isbn:'20222'}.
+... ])
+2022-11-14T10:07:02.399+0530 E  QUERY    [js] uncaught exception: SyntaxError: m
+issing name after . operator :
+@(shell):3:0
+> db.books.insertMany([
+... {_id:1013,title:'spl performance'},
+... {_id:1014,title:'sql trees'},
+... {_id:1014,title:'sql graph'},
+... {_id:1015,title:'nosql  pras'}
+... ],
+... {ordered:false})
+2022-11-14T10:12:45.192+0530 E  QUERY    [js] uncaught exception: BulkWriteError
+({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1013.0 }",
+                        "op" : {
+                                "_id" : 1013,
+                                "title" : "spl performance"
+                        }
+                },
+                {
+                        "index" : 2,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1014.0 }",
+                        "op" : {
+                                "_id" : 1014,
+                                "title" : "sql graph"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+}) :
+BulkWriteError({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1013.0 }",
+                        "op" : {
+                                "_id" : 1013,
+                                "title" : "spl performance"
+                        }
+                },
+                {
+                        "index" : 2,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1014.0 }",
+                        "op" : {
+                                "_id" : 1014,
+                                "title" : "sql graph"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+BulkWriteError@src/mongo/shell/bulk_api.js:367:48
+BulkWriteResult/this.toError@src/mongo/shell/bulk_api.js:332:24
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1186:23
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:326:5
+@(shell):1:1
+> db.books.insertMany([ {_id:1013,title:'spl performance'}, {_id:1014,title:'sql
+ trees'}, {_id:1014,title:'sql graph'}, {_id:1015,title:'nosql  pras'} ], {order
+ed:false})
+2022-11-14T10:13:17.933+0530 E  QUERY    [js] uncaught exception: BulkWriteError
+({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1013.0 }",
+                        "op" : {
+                                "_id" : 1013,
+                                "title" : "spl performance"
+                        }
+                },
+                {
+                        "index" : 1,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1014.0 }",
+                        "op" : {
+                                "_id" : 1014,
+                                "title" : "sql trees"
+                        }
+                },
+                {
+                        "index" : 2,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1014.0 }",
+                        "op" : {
+                                "_id" : 1014,
+                                "title" : "sql graph"
+                        }
+                },
+                {
+                        "index" : 3,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1015.0 }",
+                        "op" : {
+                                "_id" : 1015,
+                                "title" : "nosql  pras"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 0,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+}) :
+BulkWriteError({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1013.0 }",
+                        "op" : {
+                                "_id" : 1013,
+                                "title" : "spl performance"
+                        }
+                },
+                {
+                        "index" : 1,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1014.0 }",
+                        "op" : {
+                                "_id" : 1014,
+                                "title" : "sql trees"
+                        }
+                },
+                {
+                        "index" : 2,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1014.0 }",
+                        "op" : {
+                                "_id" : 1014,
+                                "title" : "sql graph"
+                        }
+                },
+                {
+                        "index" : 3,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: lib.b
+ooks index: _id_ dup key: { _id: 1015.0 }",
+                        "op" : {
+                                "_id" : 1015,
+                                "title" : "nosql  pras"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 0,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+BulkWriteError@src/mongo/shell/bulk_api.js:367:48
+BulkWriteResult/this.toError@src/mongo/shell/bulk_api.js:332:24
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1186:23
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:326:5
+@(shell):1:1
+> db.books.find().pretty()
+{
+        "_id" : ObjectId("6371beea7b81beee04108044"),
+        "title" : "mongodb insertone",
+        "isbn" : "0-7617-6154-3"
+}
+{ "_id" : 1, "title" : "Mastering Big Data", "isbn" : "0-9270-4986" }
+{
+        "_id" : ObjectId("6371c28b7b81beee04108045"),
+        "title" : "Nosql distilled",
+        "isbn" : "0-221-01"
+}
+{
+        "_id" : ObjectId("6371c28b7b81beee04108046"),
+        "title" : "nosql in 8 days",
+        "isbn" : "0-221-02"
+}
+{
+        "_id" : ObjectId("6371c28b7b81beee04108047"),
+        "title" : "mosql database",
+        "isbn" : "0-221-03"
+}
+{ "_id" : "1011", "title" : "sql distilled", "isbn" : "0-221-01" }
+{ "_id" : 1012, "title" : "sql in 8 days", "isbn" : "0-221-02" }
+{ "_id" : 1013, "title" : "sql database", "isbn" : "0-221-03" }
+{ "_id" : 1014, "title" : "sql trees" }
+{ "_id" : 1015, "title" : "nosql  pras" }
+> ^C
+bye
+
+C:\Users\Falcon>
+
