@@ -1,0 +1,12 @@
+This is for my learning purpose
+#python
+def func():
+	a = 10
+	b = 20
+	c = 30
+	d = a*b
+	e = d*c
+	print(e) 
+
+"This is one of the example"
+Thank you
